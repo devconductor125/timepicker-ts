@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Fuggles&family=Staatliches&display=swap');
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+h1 {
+  font-family: 'Anton', sans-serif;
+  font-weight: 400;
+}
+
+.Calendar {
+  background: #2A2A2A !important;
+}
+
+.Calendar__day {
+  color: white !important;
+}
+
+.-today {
+  background: white;
+  color: #0F0E13 !important;
+}
+
+.-today::after {
+  background: white !important;
+}
+
+.Calendar__monthArrowWrapper {
+  filter: invert(1);
+}
+
+.Calendar__monthText {
+  color: white !important;
+}
+
+.Calendar__yearText {
+  color: white !important;
+}
+
+.responsive-calendar {
+  font-size: 2.25vw !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.Calendar__event {
+  position: relative;
+}
+
+.Calendar__event:after {
+  content:'';
+  display: absolute;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 100%;
+  background-color: white;
+  height: 4px;
+  width: 4px;
+  position: absolute;
+}
