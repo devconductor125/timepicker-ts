@@ -25,7 +25,8 @@ const Page = () => {
   }
 
   document.addEventListener('touchmove', function (e) {
-    const classNames = e?.target?.className;
+    let button = e.target as HTMLElement;
+    const classNames = button.className;
     console.log(classNames)
     if (classNames.indexOf("timepicker-container") > 0 || classNames.indexOf("timepicker-selector") > 0) {
       e.preventDefault();
