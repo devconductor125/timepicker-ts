@@ -2,7 +2,7 @@
 import { InputType } from "@/components/form/input"
 import 'react-modern-calendar-datepicker/lib/DatePicker.css';
 import { DayValue } from "react-modern-calendar-datepicker";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "@/components/navbar";
 import Submit from "@/components/form/submit";
 import InputGroup from "@/components/form/inputgroup";
@@ -24,14 +24,17 @@ const Page = () => {
     return null
   }
 
-  document.addEventListener('touchmove', function (e) {
-    let button = e.target as HTMLElement;
-    const classNames = button.className;
-    console.log(classNames)
-    if (classNames.indexOf("timepicker-container") > 0 || classNames.indexOf("timepicker-selector") > 0) {
-      e.preventDefault();
-    }
-  }, { passive: false });
+  useEffect(() => {
+
+    document.addEventListener('touchmove', function (e) {
+      let button = e.target as HTMLElement;
+      const classNames = button.className;
+      console.log(classNames)
+      if (classNames.indexOf("timepicker-container") > 0 || classNames.indexOf("timepicker-selector") > 0) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+  }, [])
 
   return (
     <main className="flex flex-col h-screen gap-5 mx-10">
