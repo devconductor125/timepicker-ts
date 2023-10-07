@@ -33,7 +33,7 @@ const TimePicker: React.FC<Props> = ({ placeholder, defaultValue, className, onC
   }, [timestring])
 
   return (
-    <div onClick={() => { setShowTimePicker(!showTimePicker) }} className={`relative flex flex-row justify-between bg-[#2A2A2A] p-2 rounded ${showTimePicker && "border border-white"}`}>
+    <div onClick={() => { setShowTimePicker(!showTimePicker) }} className={`relative flex flex-row justify-between bg-[#2A2A2A] p-2 rounded ${showTimePicker && "border border-white "}`}>
       <p className={`${typeof (timestring) == 'undefined' ? "text-secondary" : "text-white"}`}>{typeof (timestring) == 'undefined' ? placeholder : timestring}</p>
       <img src="/chevron.svg" className={`transition-all ${showTimePicker ? "-rotate-90" : "rotate-90"}`} />
 
@@ -221,28 +221,15 @@ const TimePickerSection: React.FC<TimePickerSectionProps> = ({ type, onChange, d
     changeValue();
   }, [values, defaultValue])
 
-
-  useEffect(() => {
-    const checkingEnv = async () => {
-      await delayMs(3000);
-      console.log(defaultValue, componentRef, itemOffset, currentDrag, type)
-    }
-    checkingEnv();
-  }, [])
-
   return (
-    <div className={`relative h-32 w-full`} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onWheel={handleScroll} ref={componentRef}>
+    <div className={`relative h-32 w-full timepicker-container`} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onWheel={handleScroll} ref={componentRef}>
       {values.map((value, index) => {
         return (
-          <p key={index} className={`${Math.abs(((index - 1) * itemOffset) + currentDrag.current) < itemOffset / 2 ? "text-white text-xl font-bold" : "text-secondary font-normal"} font-normal absolute left-1/2 -translate-x-1/2`} style={{ top: `${(index * itemOffset) + currentDrag.current}px` }}>{value}</p>
+          <p key={index} className={`${Math.abs(((index - 1) * itemOffset) + currentDrag.current) < itemOffset / 2 ? "text-white text-xl font-bold" : "text-secondary font-normal"} font-normal absolute left-1/2 -translate-x-1/2 timepicker-selector`} style={{ top: `${(index * itemOffset) + currentDrag.current}px` }}>{value}</p>
         )
       })}
     </div>
   )
-}
-
-async function delayMs(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 export default TimePicker

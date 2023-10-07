@@ -24,6 +24,14 @@ const Page = () => {
     return null
   }
 
+  document.addEventListener('touchmove', function (e) {
+    const classNames = e?.target?.className;
+    console.log(classNames)
+    if (classNames.indexOf("timepicker-container") > 0 || classNames.indexOf("timepicker-selector") > 0) {
+      e.preventDefault();
+    }
+  }, { passive: false });
+
   return (
     <main className="flex flex-col h-screen gap-5 mx-10">
       <Navbar />
